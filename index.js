@@ -9,7 +9,9 @@ dotenv.config();
 
 const app = express();
 
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(
+  cors({ origin: "https://omazon-tudor-neagu.vercel.app", credentials: true })
+);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -17,12 +19,12 @@ app.use(bodyParser.json());
 app.use(express.json());
 
 app.use(
-	session({
-		secret: process.env.SESSION_SECRET,
-		resave: false,
-		saveUninitialized: false,
-		cookie: { secure: false },
-	}),
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false },
+  })
 );
 
 app.use("/", router);
@@ -30,5 +32,5 @@ app.use("/", router);
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-	console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
